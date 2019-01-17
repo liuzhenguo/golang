@@ -167,3 +167,15 @@ loop:
 
 	<-time.After(time.Second * 1)
 }
+/*
+Task1和Task2是两个生产者，它们都向workerChan发送消息，其中Task2立即发送，Task1有一定延时，workerChan是一个阻塞的go channel。 
+同时，有一个go channel发送结束信号（关闭exitChan）。随后开启消费者，接收workerChan的消息， 
+Task1和Task2的区别是Task2在select中多了一个对exitChan的监听。
+
+从结果可以看出，当exitChan被关闭时，Task2结束对workerChan的阻塞，取消了像worker发送信号，同时结束了自身。 
+而没有监听exitChan的Task1依然在阻塞，直到被读取后才退出。
+
+示例说明了可以通过对exitChan的使用来结束对阻塞go channel的等待。需要说明的是，在真实场景中， 
+消费者在发出结束的意图后可能并不会去处理尚未被处理的消息，所以像示例中的Task1是无法正常结束的。
+
+*/
