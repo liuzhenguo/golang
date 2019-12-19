@@ -1,0 +1,107 @@
+package main
+
+import (
+	"fmt"
+)
+
+//******************************//
+type defaultsHandler interface {
+	SetDefaults(c *Config) error
+}
+
+//*********structTagsConfig***************//
+type structTagsConfig struct{}
+
+func (h *structTagsConfig) HandlesOption() bool {
+	fmt.Printf("这是1111111111111")
+	return true
+}
+func (h *structTagsConfig) Set() error {
+	fmt.Print("tags set 1111111111")
+	return nil
+}
+func (h *structTagsConfig) Validate() error {
+	return nil
+}
+func (h *structTagsConfig) SetDefaults(c *Config) error {
+	fmt.Println("tags SetDefaults")
+	return nil
+}
+
+//*************tlsConfig********************//
+type tlsConfig struct{}
+
+func (t *tlsConfig) HandlesOption() bool {
+
+	fmt.Println("tls HandlesOption")
+	return true
+}
+func (t *tlsConfig) Set() error {
+	fmt.Println("tls Set")
+	return nil
+}
+func (t *tlsConfig) Validate() error {
+	fmt.Println("Validate")
+	return nil
+}
+func (t *tlsConfig) SetDefaults(c *Config) error {
+	fmt.Println("tls SetDefaults")
+	return nil
+}
+
+//**********************************//
+
+type configHandler interface {
+	HandlesOption() bool
+	Set() error
+	Validate() error
+}
+
+func NewConfig() *Config {
+	c := &Config{
+		configHandlers: []configHandler{&structTagsConfig{}, &tlsConfig{}},
+	}
+	if err := c.setDefaults(); err != nil {
+		panic(err.Error())
+	}
+	if err := c.Set(); err != nil {
+		panic(err.Error())
+	}
+	return c
+}
+
+type Config struct {
+	configHandlers []configHandler
+}
+
+//********************************//
+
+//设置defaults
+func (c *Config) setDefaults() error {
+	for _, h := range c.configHandlers {
+		hh, ok := h.(defaultsHandler)
+		if ok {
+			if err := hh.SetDefaults(c); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+//设置set函数
+func (c *Config) Set() error {
+
+	for _, h := range c.configHandlers {
+		if h.HandlesOption() {
+			return h.Set()
+		}
+	}
+	return nil
+
+}
+
+func main() {
+	NewConfig()
+
+}
