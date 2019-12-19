@@ -4,12 +4,12 @@ import (
 	"fmt"
 )
 
-//******************************//
+
 type defaultsHandler interface {
 	SetDefaults(c *Config) error
 }
 
-//*********structTagsConfig***************//
+
 type structTagsConfig struct{}
 
 func (h *structTagsConfig) HandlesOption() bool {
@@ -28,7 +28,6 @@ func (h *structTagsConfig) SetDefaults(c *Config) error {
 	return nil
 }
 
-//*************tlsConfig********************//
 type tlsConfig struct{}
 
 func (t *tlsConfig) HandlesOption() bool {
@@ -49,7 +48,6 @@ func (t *tlsConfig) SetDefaults(c *Config) error {
 	return nil
 }
 
-//**********************************//
 
 type configHandler interface {
 	HandlesOption() bool
@@ -74,9 +72,9 @@ type Config struct {
 	configHandlers []configHandler
 }
 
-//********************************//
 
-//设置defaults
+
+
 func (c *Config) setDefaults() error {
 	for _, h := range c.configHandlers {
 		hh, ok := h.(defaultsHandler)
@@ -89,7 +87,7 @@ func (c *Config) setDefaults() error {
 	return nil
 }
 
-//设置set函数
+
 func (c *Config) Set() error {
 
 	for _, h := range c.configHandlers {
