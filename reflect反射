@@ -1,0 +1,13 @@
+1. golang中的reflect动态调用对象方法，类似于C++的多态？
+
+2.想认识一个事物，先从外部认识这个包，先翻翻它的函数，如果直接从内部认识，难度大收获小。
+
+3. 类型有static tpye和非static type类型，反射处理的就是golang的 interface类型
+
+4. interface及其pair的存在，是Golang中实现反射的前提，理解了pair，就更容易理解反射。反射就是 用来检测存储在接口变量内部(值value；类型concrete type) pair对的一种机制。）
+
+5.出现了两个函数： reflect.TypeOf和reflect.ValueOf 对应pair的两部分，想要拿东西用这两个“手”去取。一个获取值，一个获取动态类型
+
+6.interface类型的强制转换区分转换的是指针还是值
+
+https://studygolang.com/articles/12348?fr=sidebar
