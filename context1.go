@@ -1,0 +1,153 @@
+package main
+
+import (
+	"context"
+
+	"io"
+	"log"
+	"net/http"
+	"time"
+)
+
+/*
+type SeverMutx struct {
+}
+
+func (mtx *SeverMutx) Hander() {
+
+}
+func (mtx *SeverMutx) Handle(cmd int, handler Handler) {
+	handler.ServerQRPC(10, 20)
+}
+
+//程序执行的地方
+type Handler interface {
+	ServerQRPC(a int, b int)
+}
+type HandlerFunc func(a int, b int)
+
+func (f HandlerFunc) ServerQRPC(a int, b int) {
+	f(a, b)
+}
+func (mtx *SeverMutx) HandleFunc(cmd int, handler func(a int, b int)) {
+	mtx.Handle(cmd, HandlerFunc(handler))
+}
+
+func NewFunction() *SeverMutx {
+
+	return new(SeverMutx)
+
+}
+func main() {
+	servermutx := NewFunction()
+	servermutx.HandleFunc(1, func(a int, b int) {
+		fmt.Println("a", a, "b", b)
+	})
+
+}*/
+
+/*
+1。函数指针的使用
+2。interface的使用
+3。函数回调。
+*/
+/*
+type AA interface {
+	ServerQ(a int, b int)
+}
+type BB func(int, int)
+
+func (bb BB) ServerQ(a int, b int) {
+	bb(a, b)
+}
+func Handler(test AA) {
+	test.ServerQ(10, 20)
+}
+func Handle(test func(int, int)) {
+	Handler(BB(test))
+}
+func main() {
+	Handle(func(a int, b int) {
+		fmt.Println(a, "a", b, "b")
+	})
+
+}*/
+/*
+type AA interface {
+	ServerQ(a int, b int)
+}
+
+type BB struct {
+	aa AA
+	dd int
+}
+
+type CC func(a int, b int)
+
+func (cc CC) ServerQ(a int, b int) {
+	cc.ServerQ(a, b)
+}
+func (bb BB) ServerQ(a int, b int) {
+
+}
+func GetHandler() AA {
+	var cc CC
+	bb := BB{aa: cc, dd: 10}
+	return bb
+}
+
+func main() {
+	fmt.Println("begin..")
+	GetHandler()
+
+}
+*/
+/*
+func middleWare(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		ctx := context.WithValue(req.Context(), "key", "value")
+		next.ServeHTTP(w, req.WithContext(ctx))
+	})
+}
+
+func handler(w http.ResponseWriter, req *http.Request) {
+
+	value := req.Context().Value("key").(string)
+	fmt.Println(value)
+	//fmt.Fprintln(w, "value: ", value)
+	fmt.Println("hello world")
+	return
+}
+
+func main() {
+	http.Handle("/", middleWare(http.HandlerFunc(handler)))
+	http.ListenAndServe(":8080", nil)
+}*/
+func longRunningCalculation(timeCost int) chan string {
+	result := make(chan string)
+	go func() {
+		time.Sleep(time.Second * (time.Duration(timeCost)))
+		result <- "Done"
+	}()
+	return result
+}
+
+func jobWithTimeoutHandler(w http.ResponseWriter, r *http.Request) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	select {
+	case <-ctx.Done():
+		log.Println(ctx.Err())
+		log.Println("超时返回")
+		return
+	case result := <-longRunningCalculation(5):
+		io.WriteString(w, result)
+	}
+	return
+}
+
+func main() {
+	http.HandleFunc("/", jobWithTimeoutHandler)
+	http.ListenAndServe(":8080", nil)
+}
