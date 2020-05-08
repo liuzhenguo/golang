@@ -29,3 +29,46 @@
 2020-05-07/17:30:32 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
 2020-05-07/17:31:00 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
 2020-05-07/17:31:02 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:34:17 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:34:19 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:54:42 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:54:44 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:54:45 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:54:47 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:54:56 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:54:58 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:56:52 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:56:54 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:57:59 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:58:01 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:58:04 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:58:06 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:58:24 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:58:25 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:58:27 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:58:28 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:58:29 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:58:30 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:58:42 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:58:43 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:58:50 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:58:51 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:59:45 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:59:45 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/09:59:55 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/09:59:55 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/10:01:40 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/10:01:41 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/10:01:58 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/10:02:03 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/10:02:13 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/10:02:18 [INF] dbop.go zipkin/src/control.GetDbData[36] 其他调用失败context deadline exceeded
+2020-05-08/10:13:17 [INF] dbop.go zipkin/src/control.GetDbData.func1[25] 获取userid:admin
+2020-05-08/10:13:22 [INF] dbop.go zipkin/src/control.GetDbData[36] dbop其他调用失败context deadline exceeded
+2020-05-08/10:22:35 [INF] dbop.go zipkin/src/control.GetDbData.func1[26] 获取userid:admin
+2020-05-08/10:23:04 [INF] dbop.go zipkin/src/control.GetDbData.func1[26] 获取userid:admin
+2020-05-08/10:27:00 [INF] dbop.go zipkin/src/control.GetDbData[36] dbop其他调用失败context deadline exceeded
+2020-05-08/10:27:54 [INF] dbop.go zipkin/src/control.GetDbData[36] dbop其他调用失败context deadline exceeded
+2020-05-08/10:30:10 [INF] dbop.go zipkin/src/control.GetDbData[36] dbop其他调用失败context deadline exceeded
+2020-05-08/10:30:24 [INF] dbop.go zipkin/src/control.GetDbData[36] dbop其他调用失败context deadline exceeded
+2020-05-08/10:40:44 [INF] dbop.go zipkin/src/control.GetDbData[36] dbop其他调用失败context deadline exceeded

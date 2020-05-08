@@ -12,6 +12,8 @@ func GetRedisData(ctx context.Context) error {
 	//操作redis获取数据
 	pool := envbuild.GetRedisPool()
 
+	chstr := make(chan string)
+
 	err := make(chan error)
 	go func() {
 		conn := pool.Get()
@@ -26,16 +28,17 @@ func GetRedisData(ctx context.Context) error {
 		if len(v) == 0 {
 			fmt.Println("redis nill return")
 		}
-		fmt.Println("get redis value:", v)
+		chstr <- v
 	}()
 	select {
 	case <-ctx.Done():
-		fmt.Println("其他调用失败")
+		fmt.Println("redis其他调用失败:", ctx.Err())
 		return ctx.Err()
 	case e := <-err:
-		fmt.Println("自己调用失败")
+		fmt.Println("redis自己调用失败")
 		return e
-	default:
+	case result := <-chstr:
+		fmt.Println("redis data:", result)
 		return nil
 	}
 }
