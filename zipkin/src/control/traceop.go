@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	enpoitUrl = "http://192.168.60.38:9411/api/v2/spans"
+	enpoitUrl = "http://zipkin:9411/api/v2/spans"
 )
 
 func gettracer(servername string, ip string) *zipkin.Tracer {

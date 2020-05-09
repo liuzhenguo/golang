@@ -1,0 +1,9 @@
+:19411 {
+    basicauth / {$ADMIN_USER} {$ADMIN_PASSWORD}
+    log / stdout "{host} {upstream}"
+    errors stdout
+    proxy / zipkin:9411 {
+            transparent
+        }
+    tls off
+}

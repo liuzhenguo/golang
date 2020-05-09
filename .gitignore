@@ -1,0 +1,14 @@
+.DS_Store
+.vscode/*
+*.git
+*.out
+*.log
+*.pid
+*.db
+*.jpg
+*.jpeg
+*.exe
+*.bin
+**/go.sum
+*.log
+dump.rdb

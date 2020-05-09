@@ -1,0 +1,76 @@
+version: "3.7"
+
+networks:
+  zipkin-net:
+    driver: bridge
+
+services:
+  redis:
+    image: redis
+    container_name: zipkin-redis
+    ports:
+      - 127.0.0.1:16379:6379
+    networks:
+      - zipkin-net  
+    expose:
+      - 6379
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
+      interval: 20s
+      timeout: 1s
+      retries: 20
+  storage:
+    image: openzipkin/zipkin-mysql
+    container_name: zipkin-mysql
+    ports:
+        - "127.0.0.1:13306:3306"   
+    networks:
+      - zipkin-net  
+    expose:
+        - 3306  
+    # Uncomment to expose the storage port for testing
+    # ports:
+    #   - 3306:3306
+
+  # The zipkin process services the UI, and also exposes a POST endpoint that
+  # instrumentation can send trace data to. Scribe is disabled by default.
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
+    environment:
+      - STORAGE_TYPE=mysql
+      # Point the zipkin at the storage backend
+      - MYSQL_HOST=zipkin-mysql
+      # Uncomment to enable scribe
+      # - SCRIBE_ENABLED=true
+      # Uncomment to enable self-tracing
+      # - SELF_TRACING_ENABLED=true
+      # Uncomment to enable debug logging
+      # - JAVA_OPTS=-Dlogging.level.zipkin2=DEBUG
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - "127.0.0.1:9411:9411"
+    networks:
+      - zipkin-net    
+    expose:
+      - 9411
+  #     # Uncomment if you set SCRIBE_ENABLED=true
+  #     # - 9410:9410
+    depends_on:
+      - storage
+  caddy:
+      image: stefanprodan/caddy
+      container_name: zipkin-caddy
+      ports:
+        - "19411:19411"
+      volumes:
+        - ./caddy/:/etc/caddy/
+      environment:
+        - ADMIN_USER=${ADMIN_USER:-admin}
+        - ADMIN_PASSWORD=${ADMIN_PASSWORD:-duoduo}
+      restart: unless-stopped
+      depends_on:
+        - zipkin
+      networks:
+        - zipkin-net
