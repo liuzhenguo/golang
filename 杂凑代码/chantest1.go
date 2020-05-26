@@ -1,3 +1,4 @@
+//传递的chann的数据对值修改
 package main
 
 import (

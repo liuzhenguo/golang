@@ -1,3 +1,4 @@
+//channel中传递的数据对引用的修改
 package main
 
 import (
