@@ -4,7 +4,7 @@
 * 3. 执行 go test对当前目录下的所有 *_test.go进行编译并自动执行测试。
 * 4. 测试某个文件使用 go test -file *_test.go ，-file可以省略。
 * 5. go test -run="Test_xxx or TestXxx"执行某个测试方法。
-* 6.go test -v 全部执行，没有错误的pass有错误的报错，go test 如果遇到报错，打印出报错停止。
+* 6. go test -v 全部执行，没有错误的pass有错误的报错，go test 如果遇到报错，打印出报错停止。
 
 
 ## 性能测试
