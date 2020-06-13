@@ -1,5 +1,5 @@
- - ÏÂÔØprotoc https://github.com/google/protobuf/releases
- - ÏÂÔØ  go get -u github.com/golang/protobuf/protoc-gen-go
- -  ´´½¨test.proto
- -  ´´½¨ test.pb.go Ê¹ÓÃÃüÁî protoc --go_out=. *.proto   
- -  mainÎÄ¼şÖĞÒıÓÃ test.pb.goµÄ°ü
+ä¸‹è½½protoc https://github.com/google/protobuf/releases
+ä¸‹è½½  go get -u github.com/golang/protobuf/protoc-gen-go
+åˆ›å»ºtest.proto
+åˆ›å»º test.pb.go ä½¿ç”¨å‘½ä»¤ protoc --go_out=. *.proto   
+mainæ–‡ä»¶ä¸­å¼•ç”¨ test.pb.goçš„åŒ…
